@@ -13,6 +13,15 @@
 
 #include <tnmacro.h>
 
+#define EXGPIO_0 pca9554 0
+#define EXGPIO_1 pca9554 1
+#define EXGPIO_2 pca9554 2
+#define EXGPIO_3 pca9554 3
+#define EXGPIO_4 pca9554 4
+#define EXGPIO_5 pca9554 5
+#define EXGPIO_6 pca9554 6
+#define EXGPIO_7 pca9554 7
+
 / {
 	gpio-edm {
 		compatible = "gpio-edm";
@@ -21,6 +30,41 @@
 		pinctrl-names = "default";
 		pinctrl-0 = <EDM_EXT_GPIO_IOMUX_GNOME>;
 #endif
+		ex-gpio_0 {
+			label = "EXGPIO_0";
+			gpios = <&EXGPIO_0 1>;
+			dir   = "out";
+		};
+		ex-gpio_1 {
+			label = "EXGPIO_1";
+			gpios = <&EXGPIO_1 1>;
+			dir   = "out";
+		};
+		ex-gpio_2 {
+			label = "EXGPIO_2";
+			gpios = <&EXGPIO_2 1>;
+			dir   = "out";
+		};
+		ex-gpio_3 {
+			label = "EXGPIO_3";
+			gpios = <&EXGPIO_3 1>;
+			dir   = "out";
+		};
+		ex-gpio_4 {
+			label = "EXGPIO_4";
+			gpios = <&EXGPIO_4 1>;
+			dir   = "out";
+		};
+		ex-gpio_5 {
+			label = "EXGPIO_5";
+			gpios = <&EXGPIO_5 1>;
+			dir   = "out";
+		};
+		ex-gpio_6 {
+			label = "EXGPIO_6";
+			gpios = <&EXGPIO_6 1>;
+			dir   = "out";
+		};
 		gpio_p255 {
 			label = "GPIO_P255";
 			gpios = <&EDM_EXT_GPIO_P255 1>;
@@ -51,16 +95,6 @@
 			gpios = <&EDM_EXT_GPIO_P264 1>;
 			dir   = "out";
 		};
-		gpio_p265 {
-			label = "GPIO_P265";
-			gpios = <&EDM_EXT_GPIO_P265 1>;
-			dir   = "out";
-		};
-		gpio_p266 {
-			label = "GPIO_P266";
-			gpios = <&EDM_EXT_GPIO_P266 1>;
-			dir   = "out";
-		};
 	};
 
 	sound {
@@ -83,14 +117,15 @@
 
 	gpio-leds {
 		compatible = "gpio-leds";
-#ifdef PICO_EXT_GPIOLED_IOMUX_GNOME
-			pinctrl-names = "default";
-			pinctrl-0 = <PICO_EXT_GPIOLED_IOMUX_GNOME>;
-#endif
-		pi-led {
+		gnome-led {
 			label = "gnome-led";
 			gpios = <&EDM_EXT_GPIO_P258 GPIO_ACTIVE_LOW>;
+			default-state = "on";
 		};
+	};
+
+	backlight_lvds {
+		status = "disabled";
 	};
 };
 
@@ -122,30 +157,27 @@
 		touchscreen-size-x = <800>;
 		touchscreen-size-y = <480>;
 	};
+
+        pca9554: pca9554@25 {
+		compatible = "nxp,pca9554";
+		gpio-controller;
+		#gpio-cells = <2>;
+		#interrupt-cells = <2>;
+		reg = <0x25>;
+	};
 };
 
 &EDM1_GNOME_I2C3 {
 	status = "okay";
-
 	ds1337: rtc@68 {
 		compatible = "mxim,ds1337";
 		reg = <0x68>;
 	};
 };
 
-&can1 {
-	status = "okay";
-};
-
-&can2 {
-	status = "okay";
-};
-
-#ifdef EDM1_GNOME_ENABLE_SPDIF
 &spdif {
-	status = "okay";
+	status = "disabled";
 };
-#endif
 
 &ecspi1 {
 	status = "okay";
