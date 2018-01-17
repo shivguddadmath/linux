@@ -138,6 +138,7 @@
 			regulator-min-microvolt = <5000000>;
 			regulator-max-microvolt = <5000000>;
 			gpio = <&gpio1 2 0>;
+			enable-active-low;
 		};
 	};
 
@@ -404,10 +405,9 @@
                   pinctrl_ext_gpio_gnome: ext-gpio-grp-gnome {
                         fsl,pins = <
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0x79
-                                MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x79
-                                MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x79
-                        >;
-                  };
+				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x79
+			>;
+		};
 
 		  pinctrl_hog_1: hoggrp-1 {
 			fsl,pins = <
@@ -675,6 +675,14 @@
 };
 
 &usbotg1 {
+	dr_mode = "otg";
+	srp-disable;
+	hnp-disable;
+	adp-disable;
+	status = "okay";
+};
+
+&usbotg1 {
 	vbus-supply = <&reg_usb_otg_vbus>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usb_otg1_id>;
@@ -825,7 +833,7 @@
 	pinctrl-0 = <&pinctrl_pwm4>;
 	clocks = <&clks IMX6UL_CLK_PWM4>,
 		  <&clks IMX6UL_CLK_PWM4>;
-	status = "disabled";
+	status = "okay";
 };
 
 &spdif {
