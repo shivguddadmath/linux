@@ -124,6 +124,10 @@
 		};
 	};
 
+	sound-spdif {
+		status = "disabled";
+	};
+
 	backlight_lvds {
 		status = "disabled";
 	};
