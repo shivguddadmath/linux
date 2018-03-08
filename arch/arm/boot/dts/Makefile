@@ -357,6 +357,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6q-edm1-cf_tc0700.dtb \
 	imx6q-edm1-cf-pmic_tc0700.dtb \
 	imx6q-edm1-cf-pmic_tc1000.dtb \
+	imx6q-edm1-cf-pmic_gnome.dtb \
 	imx6q-edm2-cf-pmic_gremlin.dtb \
 	imx6q-pico_dwarf.dtb \
 	imx6q-pico_hobbit.dtb \

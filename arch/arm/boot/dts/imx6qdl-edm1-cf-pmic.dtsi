@@ -42,6 +42,7 @@
 #define EDM_EXT_GPIO_IOMUX_FAIRY &pinctrl_ext_gpio_fairy
 #define EDM_EXT_GPIO_IOMUX_TC0700 &pinctrl_ext_gpio_tc0700
 #define EDM_EXT_GPIO_IOMUX_TC1000 &pinctrl_ext_gpio_tc1000
+#define EDM_EXT_GPIO_IOMUX_GNOME &pinctrl_ext_gpio_gnome
 #define EDM1_EXT_PCA9555_IOMUX_TC1000 &pinctrl_pca9555_interrupt
 
 /* audio codec */
@@ -65,6 +66,11 @@
 #define EDM1_TC1000_I2C1 i2c1
 #define EDM1_TC1000_I2C2 i2c2
 #define EDM1_TC1000_I2C3 i2c3
+
+/* tc1000 baseboard bus definitions */
+#define EDM1_GNOME_I2C1 i2c1
+#define EDM1_GNOME_I2C2 i2c2
+#define EDM1_GNOME_I2C3 i2c3
 
 / {
 	aliases {
@@ -470,6 +476,17 @@
 				MX6QDL_PAD_CSI0_DAT17__GPIO6_IO03  0x4001b0b5 /* GPIO6_03 EDM pin 261 */
 				MX6QDL_PAD_ENET_RX_ER__GPIO1_IO24  0x4001b0b5 /* GPIO1_24 EDM pin 262 */
 				MX6QDL_PAD_CSI0_DAT13__GPIO5_IO31  0x4001b0b5 /* GPIO5_30 LVDS POWER */
+			>;
+		};
+
+		pinctrl_ext_gpio_gnome: ext-gpio-grp-gnome {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT19__GPIO6_IO05  0x4001b0b5 /* GPIO6_05 EDM pin 255 */
+				MX6QDL_PAD_CSI0_DAT16__GPIO6_IO02  0x4001b0b5 /* GPIO6_02 EDM pin 256 */
+				MX6QDL_PAD_EIM_BCLK__GPIO6_IO31    0x4001b0b5 /* GPIO6_31 EDM pin 260 */
+				MX6QDL_PAD_ENET_RX_ER__GPIO1_IO24  0x4001b0b5 /* GPIO1_24 EDM pin 262 */
+				MX6QDL_PAD_GPIO_4__GPIO1_IO04      0x4001b0b5 /* GPIO1_04 EDM pin 263 */
+				MX6QDL_PAD_SD3_RST__GPIO7_IO08     0x4001b0b5 /* GPIO7_08 EDM pin 264 */
 			>;
 		};
 
