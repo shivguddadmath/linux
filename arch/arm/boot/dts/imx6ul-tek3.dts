@@ -158,7 +158,7 @@
 
 		led_d31 {
 			label = "led_d31";
-			pwms = <&pwm2 0 5000000>;
+			pwms = <&pwm2 0 50000>;
 			max-brightness = <255>;
 			linux,default-trigger = "default-on";
 		};
